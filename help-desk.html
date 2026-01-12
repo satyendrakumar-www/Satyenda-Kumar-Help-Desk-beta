@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Satyendra Kumar – Help Desk</title>
+
+<style>
+/* ===== RESET ===== */
+*{margin:0;padding:0;box-sizing:border-box;font-family:"Segoe UI",Roboto,Arial,sans-serif;}
+html{scroll-behavior:smooth;}
+body{background:#f4f6f8;color:#222;transition:.4s}
+
+/* ===== PROGRESS BAR ===== */
+#unlock-progress{position:fixed;top:0;left:0;width:100%;height:6px;background:#ddd;z-index:9999}
+#unlock-bar{height:100%;width:0%;background:linear-gradient(90deg,#ff0000,#ff7a00,#00c6ff);transition:.4s}
+
+/* ===== HEADER ===== */
+.sk-header{background:#fff;padding-bottom:12px}
+.sk-brand{
+  display:flex;align-items:center;margin:16px;padding:14px;
+  border-radius:18px;background:rgba(255,255,255,.85);
+  backdrop-filter:blur(8px);
+  box-shadow:0 15px 35px rgba(0,0,0,.15)
+}
+.sk-logo{width:64px;height:64px;border-radius:50%;border:3px solid #ff0000}
+.sk-name{margin-left:14px;flex:1}
+.sk-name h1{font-size:22px;font-weight:700}
+.sk-name span{font-size:13px;color:#666}
+.theme-btn{border:none;background:#111;color:#fff;padding:8px 12px;border-radius:10px;cursor:pointer}
+
+/* ===== BANNER ===== */
+.sk-banner img{width:calc(100% - 20px);margin:10px;height:200px;object-fit:cover;border-radius:16px}
+
+/* ===== POSTER ===== */
+.sk-poster{
+  margin:0 16px;padding:10px;border-radius:14px;color:#fff;text-align:center;
+  background:linear-gradient(135deg,#ff0000,#ff7a00)
+}
+
+/* ===== HERO ===== */
+.hero{
+  margin:20px 16px;padding:28px;background:#fff;border-radius:18px;
+  text-align:center;box-shadow:0 12px 30px rgba(0,0,0,.1)
+}
+
+/* ===== MESSAGE ===== */
+.message-box{
+  margin:20px 16px;padding:20px;background:#fff;border-radius:20px;
+  box-shadow:0 15px 35px rgba(0,0,0,.12)
+}
+.message-box textarea{width:100%;height:120px;border-radius:14px;padding:12px;border:1px solid #ccc}
+.locked-btn{
+  margin-top:16px;width:100%;padding:14px;border:none;border-radius:14px;
+  background:#bbb;color:#fff;font-size:16px;cursor:not-allowed
+}
+.locked-btn.pulse{animation:pulse 1.5s infinite}
+@keyframes pulse{
+  0%{box-shadow:0 0 0 0 rgba(255,0,0,.6)}
+  70%{box-shadow:0 0 0 15px rgba(255,0,0,0)}
+  100%{box-shadow:0 0 0 0 rgba(255,0,0,0)}
+}
+
+/* ===== SOCIAL ===== */
+.social-section{padding:10px 16px 40px}
+.social-section h3{text-align:center;margin:26px 0 16px}
+.social-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+.social-card{
+  background:rgba(255,255,255,.9);border-radius:18px;padding:16px;text-align:center;
+  box-shadow:0 12px 28px rgba(0,0,0,.12);transition:.35s
+}
+.social-card:hover{transform:translateY(-6px) scale(1.03)}
+.social-card span{display:block;font-weight:600;margin-bottom:10px}
+.social-card a{
+  padding:8px 16px;border-radius:10px;color:#fff;text-decoration:none;font-weight:600;position:relative
+}
+.social-card a::after{
+  content:attr(data-tip);position:absolute;bottom:130%;left:50%;
+  transform:translateX(-50%);background:#000;color:#fff;padding:4px 8px;
+  border-radius:6px;font-size:11px;opacity:0;transition:.3s
+}
+.social-card a:hover::after{opacity:1}
+
+/* COLORS */
+.yt{background:#ff0000}.tg{background:#0088cc}.wa{background:#25d366}
+.ig{background:#e1306c}.fb{background:#1877f2}
+
+/* ===== FOOTER ===== */
+footer{background:#fff;text-align:center;padding:14px;font-size:12px;color:#666}
+
+/* ===== DARK ===== */
+body.dark{background:#121212;color:#eee}
+body.dark .hero,body.dark .message-box,body.dark .social-card,body.dark .sk-brand{background:#1e1e1e}
+
+/* ===== DESKTOP ===== */
+@media(min-width:768px){
+  .social-grid{grid-template-columns:repeat(3,1fr)}
+  .sk-banner img{height:280px}
+}
+</style>
+</head>
+
+<body>
+
+<div id="unlock-progress"><div id="unlock-bar"></div></div>
+
+<header class="sk-header">
+  <div class="sk-brand">
+    <img src="images/logo.png" class="sk-logo">
+    <div class="sk-name">
+      <h1>Satyendra Kumar</h1>
+      <span>Official Help Desk</span>
+    </div>
+    <button class="theme-btn" id="themeBtn">🌙</button>
+  </div>
+  <div class="sk-banner"><img src="images/banner.jpg"></div>
+  <div class="sk-poster">🚜 Help • Knowledge • Growth • Community</div>
+</header>
+
+<section class="hero">
+  <h1>Madad chahiye? Pehle official channels se judein</h1>
+  <p>Sab connect hone ke baad message unlock hoga</p>
+</section>
+
+<section class="message-box">
+  <h3>📝 Apni Problem Likhiye</h3>
+  <textarea placeholder="Yahan apni problem likhiye..."></textarea>
+  <button id="sendBtn" class="locked-btn pulse">Send Message (Locked)</button>
+</section>
+
+<section class="social-section">
+
+<h3>🔴 YouTube Channels</h3>
+<div class="social-grid">
+  <div class="social-card"><span>Satyendra Kumar</span><a href="https://youtube.com/@satyendrayt-k9q?si=fJ8HvwddMzVGvYUI" target="_blank" class="yt social" data-tip="Subscribe">Subscribe</a></div>
+  <div class="social-card"><span>Satyendra Kumar Vlog</span><a href="https://youtube.com/@aslipadhairootlevel?si=g9Lkqe4PO-gwPeo6" target="_blank" class="yt social" data-tip="Subscribe">Subscribe</a></div>
+  <div class="social-card"><span>Satyendra Kumar Extra</span><a href="https://youtube.com/@satyendrakumarextra?si=hf-5M1aNuzK6fRzo" target="_blank" class="yt social" data-tip="Subscribe">Subscribe</a></div>
+  <div class="social-card"><span>Satyendra Kumar Advance</span><a href="https://youtube.com/@satyendrakumaradvance?si=DJbVZuLaHvpyIAE1" target="_blank" class="yt social" data-tip="Subscribe">Subscribe</a></div>
+  <div class="social-card"><span>Viral Satyendra Sir</span><a href="https://youtube.com/@viralsatyendrasir?si=-x4TRH-jHmIaTHXH" target="_blank" class="yt social" data-tip="Subscribe">Subscribe</a></div>
+</div>
+
+<h3>🔵 Telegram</h3>
+<div class="social-grid">
+  <div class="social-card"><span>Channel</span><a href="https://t.me/boost/satyendrakumarchannel" target="_blank" class="tg social" data-tip="Join">Join</a></div>
+  <div class="social-card"><span>Group</span><a href="https://t.me/+JxHLkx6XKAlmYjll" target="_blank" class="tg social" data-tip="Join">Join</a></div>
+  <div class="social-card"><span>Community</span><a href="https://telegram.org/dl" target="_blank" class="tg social" data-tip="Join">Join</a></div>
+</div>
+
+<h3>🟢 WhatsApp</h3>
+<div class="social-grid">
+  <div class="social-card"><span>Channel</span><a href="https://whatsapp.com/channel/0029VbC81b36RGJBLw0FAN2m" target="_blank" class="wa social" data-tip="Join">Join</a></div>
+  <div class="social-card"><span>Group</span><a href="https://chat.whatsapp.com/JLilurTS5J55CT3SrGGyWX" target="_blank" class="wa social" data-tip="Join">Join</a></div>
+  <div class="social-card"><span>Community</span><a href="https://chat.whatsapp.com/LYYrETrnL2DLJ1Fe30TW99" target="_blank" class="wa social" data-tip="Join">Join</a></div>
+</div>
+
+<h3>📸 Instagram</h3>
+<div class="social-grid">
+  <div class="social-card"><span>Official</span><a href="https://www.instagram.com/satyendrakumarofficial2" target="_blank" class="ig social" data-tip="Follow">Follow</a></div>
+  <div class="social-card"><span>Viral Page</span><a href="https://www.instagram.com/viral_satyendra_sir1" target="_blank" class="ig social" data-tip="Follow">Follow</a></div>
+</div>
+
+<h3>📘 Facebook</h3>
+<div class="social-grid">
+  <div class="social-card"><span>Profile</span><a href="https://www.facebook.com/profile.php?id=61571029063629" target="_blank" class="fb social" data-tip="Follow">Follow</a></div>
+  <div class="social-card"><span>Page</span><a href="https://www.facebook.com/profile.php?id=61572984524315" target="_blank" class="fb social" data-tip="Like">Like</a></div>
+  <div class="social-card"><span>Direct Call</span><a href="tel:+917762950354" class="fb" data-tip="Call">Call Now</a></div>
+</div>
+
+</section>
+
+<footer>© 2026 Satyendra Kumar | Official Help Desk</footer>
+<script src="js/app.js"></script>
+<script>
+const btn=document.getElementById("themeBtn");
+btn.onclick=()=>{document.body.classList.toggle("dark");btn.textContent=document.body.classList.contains("dark")?"☀️":"🌙";}
+
+const socials=document.querySelectorAll(".social");
+const bar=document.getElementById("unlock-bar");
+const send=document.getElementById("sendBtn");
+let done=new Set();
+
+socials.forEach(s=>{
+  s.onclick=()=>{
+    if(!done.has(s)){
+      done.add(s);s.style.opacity=.6;
+      let percent=(done.size/socials.length)*100;
+      bar.style.width=percent+"%";
+      if(percent===100){
+        send.classList.remove("pulse");
+        send.textContent="✅ Send Message";
+        send.style.background="linear-gradient(135deg,#ff0000,#ff7a00)";
+        send.style.cursor="pointer";
+        confetti();
+      }
+    }
+  }
+});
+
+function confetti(){
+  for(let i=0;i<100;i++){
+    let d=document.createElement("div");
+    d.style.cssText=`position:fixed;width:8px;height:8px;
+    background:hsl(${Math.random()*360},100%,50%);
+    left:${Math.random()*innerWidth}px;top:-10px;border-radius:50%;z-index:9999`;
+    document.body.appendChild(d);
+    let y=0;
+    let f=setInterval(()=>{
+      y+=6;d.style.top=y+"px";
+      if(y>innerHeight){clearInterval(f);d.remove();}
+    },16);
+  }
+}
+</script>
+
+</body>
+</html>
